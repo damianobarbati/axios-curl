@@ -1,0 +1,22 @@
+{
+    "name": "axios-curl",
+    "version": "1.0.0",
+    "main": "index.js",
+    "browser": "index.browser.js",
+    "license": "MIT",
+    "scripts": {
+        "test": "node -r esm index.spec.js",
+        "parcel": "parcel serve spec/index.html --open"
+    },
+    "peerDependencies": {
+        "axios": "^0.18.0"
+    },
+    "devDependencies": {
+        "axios": "^0.18.0",
+        "axios-mock-adapter": "^1.16.0",
+        "esm": "^3.2.22",
+        "form-data": "^2.3.3",
+        "nodemon": "^1.19.0",
+        "parcel": "^1.12.3"
+    }
+}
