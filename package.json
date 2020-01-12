@@ -12,11 +12,11 @@
         "axios": "^0.18.0"
     },
     "devDependencies": {
-        "axios": "^0.18.0",
-        "axios-mock-adapter": "^1.16.0",
-        "esm": "^3.2.22",
-        "form-data": "^2.3.3",
-        "nodemon": "^1.19.0",
-        "parcel": "^1.12.3"
+        "axios": "^0.19.1",
+        "axios-mock-adapter": "^1.17.0",
+        "esm": "^3.2.25",
+        "form-data": "^3.0.0",
+        "nodemon": "^2.0.2",
+        "parcel": "^1.12.4"
     }
 }
