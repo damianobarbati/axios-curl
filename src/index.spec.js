@@ -1,7 +1,6 @@
 import { strict as assert } from 'assert';
 import path from 'path';
 import fs from 'fs';
-import { spawnSync } from 'child_process';
 import FormData from 'form-data';
 import axios from 'axios';
 import axiosCurl from './index.js';

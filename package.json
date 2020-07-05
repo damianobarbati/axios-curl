@@ -1,10 +1,12 @@
 {
     "name": "axios-curl",
     "version": "1.0.0",
-    "main": "index.js",
-    "browser": "index.browser.js",
+    "repository": "https://github.com/damianobarbati/axios-curl",
+    "main": "src/index.js",
     "license": "MIT",
+    "type": "module",
     "scripts": {
+        "eslint": "eslint --ignore-path .gitignore",
         "test": "node -r esm index.spec.js",
         "parcel": "parcel serve spec/index.html --open"
     },
@@ -14,9 +16,10 @@
     "devDependencies": {
         "axios": "^0.19.1",
         "axios-mock-adapter": "^1.17.0",
-        "esm": "^3.2.25",
+        "babel-eslint": "^10.1.0",
+        "eslint": "^7.4.0",
+        "eslint-plugin-jasmine": "^4.1.1",
         "form-data": "^3.0.0",
-        "nodemon": "^2.0.2",
         "parcel": "^1.12.4"
     }
 }

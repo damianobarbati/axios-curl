@@ -1,7 +1,4 @@
-import path from 'path';
-import Stream from 'stream';
-
-export default (axios, { log = console.log, include = undefined, exclude = undefined } = {}) => {
+export default (axios, { include = undefined, exclude = undefined } = {}) => {
     axios.interceptors.request.use(request => {
         if (include && !include(request))
             return request;
@@ -11,12 +8,12 @@ export default (axios, { log = console.log, include = undefined, exclude = undef
 
         try {
             const curl = request.curl = curlize(request);
-            log(curl);
+            console.log(curl);
         }
         catch (error) {
-            console.error('axiosCurl error');
             console.error(error);
         }
+
         return request;
     });
 };
@@ -24,20 +21,14 @@ export default (axios, { log = console.log, include = undefined, exclude = undef
 const formDataToBody = formData => {
     let body = '';
 
-    const data = {};
-    const fields = formData._streams.filter(stream => typeof stream !== 'string' || stream.trim()).filter(stream => typeof stream !== 'function');
-    for (let index = 0; index < fields.length; index += 2) {
-        const name = fields[index].match(/name="(?<name>.+?)"/mi).groups.name;
-        const value = fields[index + 1];
-        data[name] = value;
-    }
+    if (formData && formData.constructor.name)
+        return '<formdata body is omitted>';
+
+    const data = Object.fromEntries([...formData]);
 
     for (const name in data) {
         const value = data[name];
-        if (value instanceof Stream)
-            body += ` -F '${name}=@"${path.resolve(value.source.path)}"'`;
-        else
-            body += ` -F '${name}=${value}'`;
+        body += ` -d '${name}=${value}'`;
     }
 
     body = body.trim();
@@ -65,6 +56,7 @@ const curlize = request => {
         ...(request.headers.common || {}),
         ...(request.headers[request.method.toLowerCase()] || {}),
     };
+
     // custom headers
     for (const key in request.headers)
         if (!['common', 'delete', 'get', 'head', 'post', 'put', 'patch'].includes(key))
